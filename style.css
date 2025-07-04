@@ -193,14 +193,14 @@ header {
 }
 .product-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, auto));
+    grid-template-columns:repeat(auto-fit, minmax(160px, auto));
     gap: 1.5rem;
     margin-top: 2rem;
 }
 .product-container .box {
-    padding: 20px;
+    padding: 10px;
     box-shadow: 1px 2px 11px 4px rgb(14 55 54 / 15%);
-    border-radius: 0.5rem;
+    border-radius: 1.5rem;
     position: relative;
 }
 .product-container .box img {
@@ -211,16 +211,16 @@ header {
 }
 .product-container .box span {
     font-weight: 500;
-    font-size: 13px;
+    font-size: 10px;
 }
 .product-container .box h2{
-    font-size: 1.2rem;
+    font-size: 1.0rem;
     font-weight: 600;
     margin-top: 0.5rem;
     color: var(--text-color)
 }
 .product-container .box .price {
-    font-size: 1rem;
+    font-size: .90rem;
     font-weight: 600;
     margin-top: 0.5rem;
     color: var(--orange-color)
@@ -350,13 +350,13 @@ header {
 }    
 .social .image {
     padding: 15px;
-    border-radius: 5rem;
+    border-radius: 2rem;
     display: grid;
     place-items: center;
 }
 .social .image img {
-  width: min(25rem, 90%);
-  border-radius: 20%;
+  width: min(25rem, 50%);
+  border-radius: 10%;
 }
 .social .image:hover {
     background: var(--light-orange-color);
@@ -505,16 +505,51 @@ header {
     .profile span {
         font-size: 10px;
     }
-
+    .container {
+    position: relative;
+    width: 100%;
+    min-height: 370px;
+    display: flex;
+    align-items: center;
+    background: var(--bg-color);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    justify-content: space-between;
+    
+}
+.container .image {
+    display: grid;
+  place-items: center;  
+}
+.container .image img {
+    width: min(8rem, 70%);
+  border-radius: 100%;
+}
+.container img {
+    width: 360px;
+    position: absolute;
+    bottom: -340px;
+    right: 100px;
+}
     .home-text {
-        padding-bottom: 17rem;
-    }
-    .home-text span {
-        font-size: 0.8rem;
-    }
-    .home-texth1 {
-        font-size: 1.4rem;
-    }
+    padding: 120px 0px;
+    max-width: 300px;
+    margin-left: 1rem;
+    margin-right: -15rem;
+}
+.home-text span {
+    font-weight: 250;
+    text-transform: uppercase;
+    color: var(--green-color);
+
+}
+.home-text h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
     .heading {
         flex-direction: column;
         text-align: center;
