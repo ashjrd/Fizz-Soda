@@ -277,8 +277,9 @@ Trulībells yours, Mudak</p>
     <button id="clear-cart">Clear Cart</button>
 
     <script>
-        let cart = [];
+       let cart = [];
 
+// Add to cart
 document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', function() {
         const productBox = this.parentElement;
@@ -295,9 +296,11 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
     });
 });
 
+// Update cart display
 function updateCart() {
     const cartItems = document.getElementById('cart-items');
     const cartTotal = document.getElementById('cart-total');
+    const cartCount = document.getElementById('cart-count');
 
     cartItems.innerHTML = "";
     let total = 0;
@@ -305,31 +308,36 @@ function updateCart() {
     cart.forEach((item, index) => {
         total += item.price;
         let li = document.createElement('li');
-        li.textContent = `${item.name} (${item.size}) - ₱${item.price.toFixed(2)}`;
-        
-        // Remove button
-        let removeBtn = document.createElement('button');
-        removeBtn.textContent = "Remove";
-        removeBtn.style.marginLeft = "10px";
-        removeBtn.addEventListener('click', function() {
-            cart.splice(index, 1);
-            updateCart();
-        });
-
-        li.appendChild(removeBtn);
+        li.innerHTML = `${item.name} (${item.size}) - ₱${item.price.toFixed(2)}
+            <button onclick="removeFromCart(${index})">x</button>`;
         cartItems.appendChild(li);
     });
 
     cartTotal.textContent = total.toFixed(2);
+    cartCount.textContent = cart.length;
 }
 
-// Clear Cart
+// Remove specific item
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+}
+
+// Clear cart
 document.getElementById('clear-cart').addEventListener('click', function() {
     cart = [];
     updateCart();
 });
+
+// Toggle cart dropdown
+document.getElementById('cart-icon').addEventListener('click', function() {
+    const dropdown = document.getElementById('cart-dropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+});
+
     </script>
 </div>
 </body>
 </html>
+
 
