@@ -29,7 +29,7 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
         const productBox = this.parentElement;
         const name = productBox.getAttribute('data-name');
 
-        // Get selected size and price
+        // Get selected size & price
         const sizeSelect = productBox.querySelector('.size-select');
         const size = sizeSelect.value;
         const price = parseFloat(sizeSelect.selectedOptions[0].getAttribute('data-price'));
@@ -70,6 +70,7 @@ document.getElementById('clear-cart').addEventListener('click', function() {
     updateCart();
 });
 
+// Toggle cart dropdown when clicking cart icon
 document.getElementById('cart-icon').addEventListener('click', function(e) {
     const dropdown = document.getElementById('cart-dropdown');
     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
@@ -79,8 +80,7 @@ document.getElementById('cart-icon').addEventListener('click', function(e) {
 // Close cart when clicking outside
 document.addEventListener('click', function(e) {
     const dropdown = document.getElementById('cart-dropdown');
-    const cartIcon = document.getElementById('cart-icon');
-    if (!dropdown.contains(e.target) && !cartIcon.contains(e.target)) {
+    if (!dropdown.contains(e.target) && e.target.id !== 'cart-icon') {
         dropdown.style.display = 'none';
     }
 });
