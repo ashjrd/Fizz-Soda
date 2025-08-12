@@ -558,7 +558,7 @@ header {
         margin-top: 1rem;
     }
 }
-/* Cart Icon in Navbar */
+/* Cart icon in navbar */
 .cart-icon-container {
     position: relative;
     margin-left: 20px;
@@ -578,7 +578,7 @@ header {
     border-radius: 50%;
 }
 
-/* Cart Dropdown Styling */
+/* Dropdown panel */
 .cart-dropdown {
     display: none;
     position: absolute;
@@ -627,5 +627,3 @@ header {
 .cart-dropdown button:hover {
     background: darkred;
 }
-
-
