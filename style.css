@@ -628,4 +628,8 @@ header {
     width: 100%;
     border-radius: 5px;
 }
+.image img {
+        width: 32px;   /* make icon small */
+        height: auto;  /* keep proportions */
+    }
 
