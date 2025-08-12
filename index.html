@@ -34,6 +34,21 @@
             <span>Ash Jared Del Rosario</span>
             <i class="bx bx-caret-down" ></i>
          </div>
+
+        <!-- Cart Icon in Navbar -->
+<div class="cart-icon-container">
+    <i class='bx bx-cart' id="cart-icon"></i>
+    <span id="cart-count">0</span>
+
+    <!-- Cart Dropdown -->
+    <div id="cart-dropdown" class="cart-dropdown">
+        <h3>Your Cart</h3>
+        <ul id="cart-items"></ul>
+        <p>Total: ₱<span id="cart-total">0.00</span></p>
+        <button id="clear-cart">Clear Cart</button>
+    </div>
+</div>
+
     </header>
     <!-- Home -->
     <section class="home swiper" id="home">
@@ -339,5 +354,6 @@ document.getElementById('cart-icon').addEventListener('click', function() {
 </div>
 </body>
 </html>
+
 
 
