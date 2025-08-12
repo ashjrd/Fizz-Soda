@@ -85,44 +85,75 @@
     <!-- Product Content-->
      <div class="product-container">
         <!-- Box 1-->
-        <div class="box">
+        <div class="box" data-name="Lychee Fruit Soda">
             <img src="pics/food1.png" alt="">
-            <span> Available Items</span>
-            <h2>Lychee Fruit Soda <br>Available Size: </h2>
-            <h3 class="price">16oz -- 39.00 <br> 22oz -- 49.00</h3>
-            <i class='bx  bx-cart' ></i> 
+            <span>Available Items</span>
+            <h2>Lychee Fruit Soda <br>Available Size:</h2>
+
+        <!-- Size Selector -->
+        <select class="size-select">
+            <option value="16oz" data-price="39.00">16oz - ₱39.00</option>
+            <option value="22oz" data-price="49.00">22oz - ₱49.00</option>
+        </select>
+
+            <button class="add-to-cart">Add to Cart</button>
         </div>
+
         <!-- Box 2-->
-        <div class="box">
+         <div class="box" data-name="Green Apple Fruit Soda">
             <img src="pics/food2.png" alt="">
-            <span> Available Items</span>
-            <h2>Green Apple Fruit Soda <br>Available Size: </h2>
-            <h3 class="price">16oz -- 39.00 <br> 22oz -- 49.00</h3>
-            <i class='bx  bx-cart'  ></i> 
+            <span>Available Items</span>
+            <h2>Green Apple Fruit Soda <br>Available Size:</h2>
+
+        <!-- Size Selector -->
+        <select class="size-select">
+            <option value="16oz" data-price="39.00">16oz - ₱39.00</option>
+            <option value="22oz" data-price="49.00">22oz - ₱49.00</option>
+        </select>
+
+            <button class="add-to-cart">Add to Cart</button>
         </div>
         <!-- Box 3-->
-        <div class="box">
+        <div class="box" data-name="Lemon Fruit Soda">
             <img src="pics/food3.png" alt="">
-            <span> Available Items</span>
-            <h2>Lemon Fruit Soda <br>Available Size: </h2>
-            <h3 class="price">16oz -- 39.00 <br> 22oz -- 49.00</h3>
-            <i class='bx  bx-cart'  ></i> 
+            <span>Available Items</span>
+            <h2>Lemon Fruit Soda <br>Available Size:</h2>
+
+        <!-- Size Selector -->
+        <select class="size-select">
+            <option value="16oz" data-price="39.00">16oz - ₱39.00</option>
+            <option value="22oz" data-price="49.00">22oz - ₱49.00</option>
+        </select>
+
+            <button class="add-to-cart">Add to Cart</button>
         </div>
         <!-- Box 4-->
-        <div class="box">
+        <div class="box" data-name="Strawberry Fruit Soda">
             <img src="pics/food4.png" alt="">
-            <span> Available Items</span>
-            <h2>Strawberry Fruit Soda <br>Available Size: </h2>
-            <h3 class="price">16oz -- 39.00 <br> 22oz -- 49.00</h3>
-            <i class='bx  bx-cart'  ></i> 
+            <span>Available Items</span>
+            <h2>Strawberry Fruit Soda <br>Available Size:</h2>
+
+        <!-- Size Selector -->
+        <select class="size-select">
+            <option value="16oz" data-price="39.00">16oz - ₱39.00</option>
+            <option value="22oz" data-price="49.00">22oz - ₱49.00</option>
+        </select>
+
+            <button class="add-to-cart">Add to Cart</button>
         </div>
         <!-- Box 5-->
-        <div class="box">
+        <div class="box" data-name="Blueberry Fruit Soda">
             <img src="pics/food5.png" alt="">
-            <span> Available Items</span>
-            <h2>Blueberry Fruit Soda <br>Available Size: </h2>
-            <h3 class="price">16oz -- 39.00 <br> 22oz -- 49.00</h3>
-            <i class='bx  bx-cart'  ></i> 
+            <span>Available Items</span>
+            <h2>Blueberry Fruit Soda <br>Available Size:</h2>
+
+        <!-- Size Selector -->
+        <select class="size-select">
+            <option value="16oz" data-price="39.00">16oz - ₱39.00</option>
+            <option value="22oz" data-price="49.00">22oz - ₱49.00</option>
+        </select>
+
+            <button class="add-to-cart">Add to Cart</button>
         </div>
      </div>
   </section>
@@ -239,5 +270,66 @@ Trulībells yours, Mudak</p>
 
      <!-- Link to JS-->
       <script src="main.js"></script>
+    <div id="cart-modal" class="cart-modal">
+    <h2>Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p>Total: ₱<span id="cart-total">0.00</span></p>
+    <button id="clear-cart">Clear Cart</button>
+
+    <script>
+        let cart = [];
+
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', function() {
+        const productBox = this.parentElement;
+        const name = productBox.getAttribute('data-name');
+
+        // Get selected size and price
+        const sizeSelect = productBox.querySelector('.size-select');
+        const size = sizeSelect.value;
+        const price = parseFloat(sizeSelect.selectedOptions[0].getAttribute('data-price'));
+
+        // Add product to cart
+        cart.push({ name, size, price });
+        updateCart();
+    });
+});
+
+function updateCart() {
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+
+    cartItems.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        total += item.price;
+        let li = document.createElement('li');
+        li.textContent = `${item.name} (${item.size}) - ₱${item.price.toFixed(2)}`;
+        
+        // Remove button
+        let removeBtn = document.createElement('button');
+        removeBtn.textContent = "Remove";
+        removeBtn.style.marginLeft = "10px";
+        removeBtn.addEventListener('click', function() {
+            cart.splice(index, 1);
+            updateCart();
+        });
+
+        li.appendChild(removeBtn);
+        cartItems.appendChild(li);
+    });
+
+    cartTotal.textContent = total.toFixed(2);
+}
+
+// Clear Cart
+document.getElementById('clear-cart').addEventListener('click', function() {
+    cart = [];
+    updateCart();
+});
+    </script>
+</div>
 </body>
 </html>
+
